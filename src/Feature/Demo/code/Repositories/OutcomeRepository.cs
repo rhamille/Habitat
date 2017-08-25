@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using MongoDB.Driver;
     using Sitecore.Analytics;
     using Sitecore.Analytics.Outcome;
     using Sitecore.Analytics.Outcome.Extensions;

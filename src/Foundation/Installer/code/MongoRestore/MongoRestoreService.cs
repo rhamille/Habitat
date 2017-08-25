@@ -85,9 +85,12 @@
       {
         var mongoUrl = new MongoUrl(connectionString);
         var mongoClient = new MongoClient(mongoUrl);
-        server = mongoClient.GetServer();
+        //server = mongoClient.GetServer();
+        var db = mongoClient.GetDatabase(mongoUrl.DatabaseName);
+        //return server.GetDatabase(mongoUrl.DatabaseName).CollectionExists(MongoRestoreSettings.RestoredDbTokenCollection);
+        return db.GetCollection<dynamic>(MongoRestoreSettings.RestoredDbTokenCollection) != null;
 
-        return server.GetDatabase(mongoUrl.DatabaseName).CollectionExists(MongoRestoreSettings.RestoredDbTokenCollection);
+
       }
       catch (FormatException ex)
       {
@@ -132,8 +135,9 @@
       try
       {
         var mongoClient = new MongoClient(mongoUrl);
-        server = mongoClient.GetServer();
-
+        //server = mongoClient.GetServer();
+        var db = mongoClient.GetDatabase(mongoUrl.DatabaseName);
+        //db.GetCollection<dynamic>(MongoRestoreSettings.RestoredDbTokenCollection) != null;
         server.GetDatabase(mongoUrl.DatabaseName).CreateCollection(MongoRestoreSettings.RestoredDbTokenCollection);
       }
       finally
